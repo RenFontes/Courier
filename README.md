@@ -9,4 +9,4 @@ There are Example projects included in the source that show usage along with a f
 
 -------------------
 
-Forked to remove all stuff I don't, to add messages with same name but with different parameter types and to update nuget references
+Forked to remove all stuff I don't need, to add messages with same name but with different parameter types and to update nuget references
