@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 
 
 namespace Courier
@@ -12,39 +11,48 @@ namespace Courier
 	public class Mediator : IDisposable
 	{
 		#region private fields
-		private readonly MessageToSubscriberMap Subscribers = new MessageToSubscriberMap();
-		private readonly List<CachedMessage> CachedMessages = new List<CachedMessage>();
+		private readonly MessageToSubscriberMap _subscribers = new MessageToSubscriberMap();
+		private readonly List<CachedMessage> _cachedMessages = new List<CachedMessage>();
 		#endregion
 
 		#region private methods
-		private void InternalBroadcastMessage<T>(String message, T parameter)
+		private void InternalBroadcastMessage<T>(string message, T parameter)
 		{
-			var subscriberList = Subscribers.GetSubscribers<T>(message) as List<MulticastDelegate>;
+		    var parameterType = parameter != null ? parameter.GetType() : null;
 
-			if (subscriberList != null)
-			{
-				foreach (var subscriber in subscriberList)
-				{
-					if (parameter == null)
-					{
-						subscriber.DynamicInvoke();
-					}
-					else
-					{
-						subscriber.DynamicInvoke(parameter);
-					}
-				}
+            //Get subscribers that can receive the parameter, and void subscribers. Or void subscribers if the parameter is null
+		    var subscriberList =
+		        _subscribers.GetSubscribers<T>(message)
+		            .Where(
+		                s =>
+		                    s.GetType().IsGenericType
+		                        ? s.GetType().GetGenericArguments()[0].IsAssignableFrom(parameterType) ||
+		                          s.GetType() == typeof (Action)
+		                        : s.GetType() == typeof (Action))
+		            .ToList();
+
+		    foreach (var subscriber in subscriberList)
+		    {
+		        //if there is no parameter or subscriber has no parameters, invoke without parameters
+		        if (parameter == null || subscriber.GetType() == typeof(Action))
+		        {
+		            subscriber.DynamicInvoke();
+		        }
+		        else
+		        {
+		            subscriber.DynamicInvoke(parameter);
+		        }
+		    }
 
 
-				SendMessageBroadcastEvent(message, parameter);
-			}
+		    SendMessageBroadcastEvent(message, parameter);
 		}
 
-		private void BroadcastCachedMessages(String message, MulticastDelegate callback)
+		private void BroadcastCachedMessages(string message, MulticastDelegate callback)
 		{
 			CleanOutCache();
 			//Search the cache for matches messages
-			List<CachedMessage> matches = CachedMessages.FindAllSL(action => action.Message == message);
+			var matches = _cachedMessages.FindAllSL(action => action.Message == message);
 			//If we find matches invoke the delegate passed in and pass the message payload
 			foreach (var cachedMessage in matches)
 			{
@@ -61,8 +69,10 @@ namespace Courier
 			CleanOutCache();
 		}
 
-		private MessageToken InternalRegisterForMessage(MulticastDelegate callback, MulticastDelegate onError, string message, Boolean excludeCachedMessages)
+		private MessageToken InternalRegisterForMessage(MulticastDelegate callback, MulticastDelegate onError, string message, bool excludeCachedMessages)
 		{
+		    var parameterType = callback.GetType().IsGenericType ? callback.GetType().GetGenericArguments()[0] : null;
+
 			if (callback.Target == null)
 				throw new InvalidOperationException("Delegate cannot be static");
 
@@ -71,32 +81,24 @@ namespace Courier
 				BroadcastCachedMessages(message, callback);
 			}
 
-			ParameterInfo[] parameters = callback.Method.GetParameters();
-
-			if (parameters != null && parameters.Length > 1)
-				throw new InvalidOperationException("The registered delegate should have 1 or fewer parameters");
-
-			Type parameterType = (parameters == null || parameters.Length == 0) ? null : parameters[0].ParameterType;
-
-			MessageToken token = MessageToken.GenerateToken(message);
+			var token = MessageToken.GenerateToken(message);
 
 			if (onError != null)
 			{
-				Subscribers.AddSubscriber(token, callback.Target, callback.Method, onError.Target, onError.Method, parameterType);
+				_subscribers.AddSubscriber(token, callback.Target, callback.Method, onError.Target, onError.Method, parameterType);
 			}
 			else
 			{
-				Subscribers.AddSubscriber(token, callback.Target, callback.Method, null, null, parameterType);
+				_subscribers.AddSubscriber(token, callback.Target, callback.Method, null, null, parameterType);
 			}
 
 			return token;
 		}
 
-
 		private void CleanOutCache()
 		{
 			//Remove any expired messages from the cache
-			CachedMessages.RemoveAllSL(message => (message.CacheOptions.ExpirationDate < DateTime.Now) || (message.ResendCount >= message.CacheOptions.NumberOfResends));
+			_cachedMessages.RemoveAllSL(message => (message.CacheOptions.ExpirationDate < DateTime.Now) || (message.ResendCount >= message.CacheOptions.NumberOfResends));
 		}
 		#endregion
 
@@ -112,11 +114,8 @@ namespace Courier
 		internal void SendMessageBroadcastEvent<T>(String message, T payload)
 		{
 			var args = new MessageBroadcastArgs(message, payload);
-			if (MessageBroadcastEvent != null)
-			{
-				MessageBroadcastEvent(this, args);
-			}
-		}
+            MessageBroadcastEvent?.Invoke(this, args);
+        }
 
 
 		#endregion
@@ -231,9 +230,9 @@ namespace Courier
 		public void UnRegisterForMessage(MessageToken token)
 		{
 			if (token == null)
-				throw new ArgumentNullException("token");
+				throw new ArgumentNullException(nameof(token));
 
-			Subscribers.RemoveSubscriber(token);
+			_subscribers.RemoveSubscriber(token);
 		}
 
 		/// <summary>
@@ -242,7 +241,7 @@ namespace Courier
 		/// <param name="messageToken">The token to check</param>
 		public Boolean IsSubscribed(MessageToken messageToken)
 		{
-			return Subscribers.IsSubscribed(messageToken);
+			return _subscribers.IsSubscribed(messageToken);
 		}
 
 		/// <summary>
@@ -255,7 +254,7 @@ namespace Courier
 			//Make sure to clean out the cache before checking
 			CleanOutCache();
 
-			var item = CachedMessages.FirstOrDefault(action => action.Message == message);
+			var item = _cachedMessages.FirstOrDefault(action => action.Message == message);
 			return item != default(CachedMessage);
 		}
 
@@ -270,9 +269,9 @@ namespace Courier
 		{
 			try
 			{
-				CachedMessages.RemoveAllSL(message => message.Token == token);
+				_cachedMessages.RemoveAllSL(message => message.Token == token);
 
-				var item = CachedMessages.FirstOrDefault(action => action.Token == token);
+				var item = _cachedMessages.FirstOrDefault(action => action.Token == token);
 				return item != default(CachedMessage);
 			}
 			catch (ArgumentNullException)
@@ -330,7 +329,7 @@ namespace Courier
 			InternalBroadcastMessage(message, parameter);
 			//Cache the message for broadcast later
 			var cachedMessage = new CachedMessage(message, parameter, cacheOptions);
-			CachedMessages.Add(cachedMessage);
+			_cachedMessages.Add(cachedMessage);
 			return cachedMessage.Token;
 		}
 
@@ -372,35 +371,37 @@ namespace Courier
 		{
 			if (disposing)
 			{
-				if (CachedMessages != null)
-				{
-					CachedMessages.Clear();
-				}
+			    _cachedMessages?.Clear();
 
-				if (Subscribers != null)
-				{
-					var disposable = Subscribers as IDisposable;
+			    var disposable = _subscribers as IDisposable;
 
-					if (disposable != null)
-					{
-						disposable.Dispose();
-					}
-				}
+			    disposable?.Dispose();
 			}
 
 		}
 		#endregion
 	}
 
+	/// <summary>
+	/// Mediator Factory
+	/// </summary>
 	public static class MediatorFactory
 	{
 		private static readonly Mediator InternalMediator = new Mediator();
 
+		/// <summary>
+		/// Returns a Mediator Singleton Object
+		/// </summary>
+		/// <returns></returns>
 		public static Mediator GetStaticMediator()
 		{
 			return InternalMediator;
 		}
 
+        /// <summary>
+        /// Returns a new Mediator Object
+        /// </summary>
+        /// <returns></returns>
 		public static Mediator GetNewMediatorInstance()
 		{
 			return new Mediator();

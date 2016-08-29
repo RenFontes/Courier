@@ -55,20 +55,9 @@ namespace Courier
 			{
 				List<WeakSubscriber> weakSubscribers = Map.Where(subscriber => subscriber.Key.Message == message).Select(subscriber => subscriber.Value).ToList();
 
-				foreach (var weakSubscriber in weakSubscribers)
-				{
-					if (!VerifyParameterType<T>(weakSubscriber))
-					{
-						ThrowMismatchTypeException<T>(weakSubscriber);
-					}
-				}
-
 				subscribers = new List<MulticastDelegate>(weakSubscribers.Count());
 
-				//Get ONLY those subscribers that have valid signatures
-				var validSubscribers = weakSubscribers.Where(VerifyParameterType<T>);
-
-				foreach (var weakSubscriber in validSubscribers)
+				foreach (var weakSubscriber in weakSubscribers)
 				{
 					MulticastDelegate weakSub = weakSubscriber.CreateCallbackDelegate();
 					if (weakSub != null)
@@ -82,48 +71,19 @@ namespace Courier
 
 		private static Type GetMethodArgumentType(WeakSubscriber subscriber)
 		{
-			var args = subscriber.CallbackMethod.GetGenericArguments() as IEnumerable<Type>;
 
-			Type argType = typeof(Object);
-			if (subscriber.CallbackMethod.GetParameters().Count() != 0)
-			{
-				argType = !args.Any() ? subscriber.CallbackMethod.GetParameters()[0].ParameterType : args.ElementAt(0).GetType();
-			}
-
+		    var argType = subscriber.ParameterType ?? typeof(object);
 			return argType;
 		}
 
-		private static Boolean VerifyParameterType<T>(WeakSubscriber subscriber)
+		private static bool VerifyParameterType<T>(WeakSubscriber subscriber)
 		{
 			//Make sure that the callbackTarget delegate has the same type of T as the boadcaster is sending
 			Type argType = GetMethodArgumentType(subscriber);
 			return argType == typeof(T);
 		}
 
-		private static void ThrowMismatchTypeException<T>(WeakSubscriber subscriber)
-		{
-			String subscriberName = subscriber.CallbackMethod.Name;
-			String expectedTypeName = GetMethodArgumentType(subscriber).FullName;
-
-			//TODO: Find a good way to get the ultimate caller of this callbackMethod (the object that casued the broadcast)
-			//This gets a little tricky to find the ultimate caller. We can build a StackFrame and roll up the tree to find the caller
-			//but that is performance intensive and tricky to accuratley find the invoker.
-			String broadcastedType = typeof(T).FullName;
-
-			String errorMessage = String.Format("The subscriber: {0} expected a parameter of type: {1} but the Broadcaster sent a parameter of type: {2}", subscriberName, expectedTypeName, broadcastedType);
-			Exception ex = new ArgumentException(errorMessage);
-
-			if (subscriber.OnErrorMethod != null)
-			{
-				Delegate onError = subscriber.CreateOnErrorDelegate();
-				if (onError != null)
-				{
-					onError.DynamicInvoke(ex);
-				}
-			}
-		}
-
-		internal Boolean IsSubscribed(MessageToken messageToken)
+		internal bool IsSubscribed(MessageToken messageToken)
 		{
 			return Map.ContainsKey(messageToken);
 		}

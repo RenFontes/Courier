@@ -1,12 +1,10 @@
-Courier
+CourierB
 =======
 
-Decoupled Message Passing framework for.NET based applications.
+This is a fork from courier. Forked it to extend the functionality to support passing different parameters types to the same message.
+I also removed some silverlight and wp7 I wasn't going to use.
+The documentation is work in progress.
 
-You can find an explanation of courier on my Blog post series: http://blog.bradcunningham.net/search/label/courier
+You can find the original Courier in here -> https://github.com/Foovanadil/Courier.
 
-There are Example projects included in the source that show usage along with a full suite of Unit Tests showing usage. Intellisense XML documentation files are included starting with the 2.0 release.
 
--------------------
-
-Forked to remove all stuff I don't need, to add messages with same name but with different parameter types and to update nuget references

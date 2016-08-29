@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Reactive.Linq;
 
 namespace Courier.Rx
 {
@@ -18,7 +19,7 @@ namespace Courier.Rx
 		public static IObservable<T> RegisterForMessage<T>(this Mediator messenger, String message)
 		{
 			//TODO: Guard aganist NULL T so the cast in the .Select won't explode in a ball or fire.
-			return Observable.FromEvent<MessageBroadcastArgs>(handler => messenger.MessageBroadcast += handler,
+			return Observable.FromEventPattern<MessageBroadcastArgs>(handler => messenger.MessageBroadcast += handler,
 			                                                     handler => messenger.MessageBroadcast -= handler)
 																 .Where(msg => msg.EventArgs.Message == message)
 																 .Select(msg => (T)msg.EventArgs.Payload);

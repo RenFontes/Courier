@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-
+using System.Reactive.Linq;
 using Xunit;
 
 namespace Courier.Rx.Tests

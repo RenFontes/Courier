@@ -10,26 +10,22 @@ namespace Courier.ViewModels
 	{
 		public event PropertyChangedEventHandler PropertyChanged;
 
-		public void PropertyChange(String propertyName)
+		public void PropertyChange(string propertyName)
 		{
 			VerifyProperty(propertyName);
 
-			PropertyChangedEventHandler handler = PropertyChanged;
-			if (handler != null)
-			{
-				handler(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
 
 		[Conditional("DEBUG")]
-		private void VerifyProperty(String propertyName)
+		private void VerifyProperty(string propertyName)
 		{
-			Type type = GetType();
-			PropertyInfo info = type.GetProperty(propertyName);
+			var type = GetType();
+			var info = type.GetProperty(propertyName);
 
 			if (info == null)
 			{
-				var message = String.Format(CultureInfo.CurrentCulture, "{0} is not a public property of {1}", propertyName, type.FullName);
+				var message = string.Format(CultureInfo.CurrentCulture, "{0} is not a public property of {1}", propertyName, type.FullName);
 				//Modified this to throw an exception instead of a Debug.Fail to make it more unit test friendly
 				throw new ArgumentOutOfRangeException(propertyName, message);
 			}
