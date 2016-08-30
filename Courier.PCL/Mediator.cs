@@ -389,22 +389,13 @@ namespace Courier
 	{
 		private static readonly Mediator InternalMediator = new Mediator();
 
-		/// <summary>
-		/// Returns a Mediator Singleton Object
-		/// </summary>
-		/// <returns></returns>
-		public static Mediator GetStaticMediator()
-		{
-			return InternalMediator;
-		}
-
         /// <summary>
-        /// Returns a new Mediator Object
+        /// Returns the Mediator Singleton Object
         /// </summary>
         /// <returns></returns>
-		public static Mediator GetNewMediatorInstance()
-		{
-			return new Mediator();
-		}
+		public static Mediator GetMediator()
+        {
+            return InternalMediator;
+        }
 	}
 }
