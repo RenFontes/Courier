@@ -14,7 +14,7 @@ Usage
 //Call the MediatorFactory to get a Mediator Singleton
 var mediator = MediatorFactory.GetMediator();
 
-//Register instance method(only instance methods allowed at the moment to message types, the message type is defined by the string. 
+//Register instance method(only instance methods allowed at the moment) to message types, the message type is defined by the string. 
 //You can include a parameter type. Only one parameter is allowed.
 //Message will be received by all compatible listeners. Listeners without parameters will receive parameterized broadcasts without the
 //parameters. Listeners where parameter type is the parent type of the broadcast will also receive the message.
