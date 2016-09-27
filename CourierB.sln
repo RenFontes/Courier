@@ -11,21 +11,21 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Examples", "Examples", "{7D
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NuGet Package", "NuGet Package", "{7AA71670-E725-4CE0-A696-01FCEAC6120E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Courier.ViewModels", "Courier.ViewModels\Courier.ViewModels.csproj", "{3EBBAE49-0F50-49C2-A8D9-4C350F432627}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CourierB.ViewModels", "Courier.ViewModels\CourierB.ViewModels.csproj", "{3EBBAE49-0F50-49C2-A8D9-4C350F432627}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Courier.Example.WPF", "Courier.WPF\Courier.Example.WPF.csproj", "{B465F352-4BCF-421F-A6D2-BC57803E26AA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CourierB.Example.WPF", "Courier.WPF\CourierB.Example.WPF.csproj", "{B465F352-4BCF-421F-A6D2-BC57803E26AA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Courier.Rx", "Courier.Rx\Courier.Rx.csproj", "{87654BDF-9893-4516-8A05-02E0C922C7FF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CourierB.Rx", "Courier.Rx\CourierB.Rx.csproj", "{87654BDF-9893-4516-8A05-02E0C922C7FF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Courier.Tests", "Courier.Tests\Courier.Tests.csproj", "{D469F040-37FF-4CD1-974F-E581367897B4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CourierB.Tests", "Courier.Tests\CourierB.Tests.csproj", "{D469F040-37FF-4CD1-974F-E581367897B4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Courier.Rx.Tests", "Courier.Rx.Tests\Courier.Rx.Tests.csproj", "{8AC05374-6AA8-41DB-987A-5DA99C6FFCD5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CourierB.Rx.Tests", "Courier.Rx.Tests\CourierB.Rx.Tests.csproj", "{8AC05374-6AA8-41DB-987A-5DA99C6FFCD5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Courier.ViewModels.Rx", "Courier.ViewModels.Rx\Courier.ViewModels.Rx.csproj", "{6E7FBB8B-8F16-415B-9A04-026639861872}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CourierB.ViewModels.Rx", "Courier.ViewModels.Rx\CourierB.ViewModels.Rx.csproj", "{6E7FBB8B-8F16-415B-9A04-026639861872}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Courier.Example.Rx", "Courier.WPF.Rx\Courier.Example.Rx.csproj", "{1B25317B-2775-4B68-A538-29148CFB75F6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CourierB.Example.Rx", "Courier.WPF.Rx\CourierB.Example.Rx.csproj", "{1B25317B-2775-4B68-A538-29148CFB75F6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Courier.PCL", "Courier.PCL\Courier.PCL.csproj", "{AC00B9F9-8EEF-4E6D-9515-DF3EDBC48634}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CourierB.PCL", "Courier.PCL\CourierB.PCL.csproj", "{AC00B9F9-8EEF-4E6D-9515-DF3EDBC48634}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

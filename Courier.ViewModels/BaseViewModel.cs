@@ -1,6 +1,6 @@
-using Courier;
+using CourierB;
 
-namespace Courier.ViewModels
+namespace CourierB.ViewModels
 {
 	public class BaseViewModel : BindableObject
 	{

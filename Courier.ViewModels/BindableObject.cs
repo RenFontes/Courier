@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.Globalization;
 using System.Reflection;
 
-namespace Courier.ViewModels
+namespace CourierB.ViewModels
 {
 	public class BindableObject : INotifyPropertyChanged
 	{

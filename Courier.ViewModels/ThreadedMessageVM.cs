@@ -2,8 +2,9 @@ using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows.Threading;
+using CourierB;
 
-namespace Courier.ViewModels
+namespace CourierB.ViewModels
 {
 	public class ThreadedMessageVM : BaseViewModel
 	{

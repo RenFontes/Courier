@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Courier
+namespace CourierB
 {
 	/// <summary>
 	/// A token returned when registering for a message. Hang on to this token if you want to explictly unsubscribe to from the message in the future

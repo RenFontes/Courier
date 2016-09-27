@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Diagnostics;
+using CourierB;
 using Xunit;
 
-namespace Courier.Tests
+namespace CourierB.Tests
 {
 	public class PerformanceTests
 	{

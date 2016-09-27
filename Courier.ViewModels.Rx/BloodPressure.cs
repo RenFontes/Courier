@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Courier.ViewModels.Rx
+namespace CourierB.ViewModels.Rx
 {
 	public class BloodPressure
 	{

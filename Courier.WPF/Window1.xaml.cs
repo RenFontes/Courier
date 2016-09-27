@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace Courier.Example.WPF
+namespace CourierB.Example.WPF
 {
 	/// <summary>
 	/// Interaction logic for Window1.xaml

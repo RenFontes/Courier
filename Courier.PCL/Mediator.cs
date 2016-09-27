@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-
-namespace Courier
+namespace CourierB
 {
 	/// <summary>
 	/// The base mediator class that handles subscriptions, message dispatching and message caching
@@ -105,7 +104,7 @@ namespace Courier
 		#region internal event
 
 		internal event EventHandler<MessageBroadcastArgs> MessageBroadcastEvent;
-		internal event EventHandler<MessageBroadcastArgs> MessageBroadcast
+		public event EventHandler<MessageBroadcastArgs> MessageBroadcast
 		{
 			add { MessageBroadcastEvent += value; }
 			remove { MessageBroadcastEvent -= value; }

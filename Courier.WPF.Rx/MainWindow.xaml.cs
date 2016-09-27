@@ -1,7 +1,7 @@
 ﻿using System.Windows;
-using Courier.ViewModels.Rx;
+using CourierB.ViewModels.Rx;
 
-namespace Courier.Example.Rx
+namespace CourierB.Example.Rx
 {
 	/// <summary>
 	/// Interaction logic for MainWindow.xaml

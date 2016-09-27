@@ -1,6 +1,7 @@
 ﻿using System;
+using CourierB;
 
-namespace Courier.ViewModels
+namespace CourierB.ViewModels
 {
 	public class FooterVM : BaseViewModel
 	{

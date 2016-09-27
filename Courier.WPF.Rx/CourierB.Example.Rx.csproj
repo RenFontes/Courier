@@ -8,8 +8,8 @@
     <ProjectGuid>{1B25317B-2775-4B68-A538-29148CFB75F6}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Courier.Example.Rx</RootNamespace>
-    <AssemblyName>Courier.Example.Rx</AssemblyName>
+    <RootNamespace>CourierB.Example.Rx</RootNamespace>
+    <AssemblyName>CourierB.Example.Rx</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
@@ -151,13 +151,13 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Courier.ViewModels.Rx\Courier.ViewModels.Rx.csproj">
+    <ProjectReference Include="..\Courier.ViewModels.Rx\CourierB.ViewModels.Rx.csproj">
       <Project>{6E7FBB8B-8F16-415B-9A04-026639861872}</Project>
-      <Name>Courier.ViewModels.Rx</Name>
+      <Name>CourierB.ViewModels.Rx</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Courier.ViewModels\Courier.ViewModels.csproj">
+    <ProjectReference Include="..\Courier.ViewModels\CourierB.ViewModels.csproj">
       <Project>{3EBBAE49-0F50-49C2-A8D9-4C350F432627}</Project>
-      <Name>Courier.ViewModels</Name>
+      <Name>CourierB.ViewModels</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

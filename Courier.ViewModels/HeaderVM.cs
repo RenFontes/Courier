@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Courier.ViewModels
+namespace CourierB.ViewModels
 {
 	public class HeaderVM : BaseViewModel
 	{

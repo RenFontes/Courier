@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Reactive.Linq;
-using Courier.Rx;
+using CourierB.Rx;
 using System.Windows.Threading;
 
-namespace Courier.ViewModels.Rx
+namespace CourierB.ViewModels.Rx
 {
 	public class BloodPressureSimulationVm : BaseViewModel
 	{

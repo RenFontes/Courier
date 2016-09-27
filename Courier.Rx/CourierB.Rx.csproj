@@ -8,8 +8,8 @@
     <ProjectGuid>{87654BDF-9893-4516-8A05-02E0C922C7FF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Courier.Rx</RootNamespace>
-    <AssemblyName>Courier.Rx</AssemblyName>
+    <RootNamespace>CourierB.Rx</RootNamespace>
+    <AssemblyName>CourierB.Rx</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>
@@ -39,7 +39,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Release\Courier.Rx.XML</DocumentationFile>
+    <DocumentationFile>bin\Release\CourierB.Rx.xml</DocumentationFile>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
@@ -73,12 +73,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Courier.PCL\Courier.PCL.csproj">
+    <ProjectReference Include="..\Courier.PCL\CourierB.PCL.csproj">
       <Project>{ac00b9f9-8eef-4e6d-9515-df3edbc48634}</Project>
-      <Name>Courier.PCL</Name>
+      <Name>CourierB.PCL</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Courier.Rx.nuspec" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace Courier.Example.Rx
+namespace CourierB.Example.Rx
 {
 	/// <summary>
 	/// Interaction logic for App.xaml

@@ -9,8 +9,8 @@
     <ProjectGuid>{D469F040-37FF-4CD1-974F-E581367897B4}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Courier.Tests</RootNamespace>
-    <AssemblyName>Courier.Tests</AssemblyName>
+    <RootNamespace>CourierB.Tests</RootNamespace>
+    <AssemblyName>CourierB.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -69,9 +69,9 @@
     <Compile Include="MessengerTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Courier.PCL\Courier.PCL.csproj">
+    <ProjectReference Include="..\Courier.PCL\CourierB.PCL.csproj">
       <Project>{ac00b9f9-8eef-4e6d-9515-df3edbc48634}</Project>
-      <Name>Courier.PCL</Name>
+      <Name>CourierB.PCL</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -1,8 +1,8 @@
 using System;
 
-namespace Courier
+namespace CourierB
 {
-    internal class MessageBroadcastArgs : EventArgs
+    public class MessageBroadcastArgs : EventArgs
     {
         public String Message { get; set; }
         public Object Payload { get; set; }

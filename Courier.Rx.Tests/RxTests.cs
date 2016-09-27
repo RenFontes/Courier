@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Linq;
 using System.Reactive.Linq;
+using CourierB;
 using Xunit;
 
-namespace Courier.Rx.Tests
+namespace CourierB.Rx.Tests
 {
 	public class RxTests : IDisposable
 	{
@@ -30,7 +31,7 @@ namespace Courier.Rx.Tests
 		{
 			Int32 callCount = 0;
 
-			IObservable<Int32> observable = Messenger.RegisterForMessage<Int32>("TestMessage");
+			IObservable<Int32> observable = Messenger.RegisterForMessage<Int32>("TestMessage");//.Where(i => i == 3);
 			observable.Subscribe(s => callCount++);
 
 			Messenger.BroadcastMessage("TestMessage", 1);

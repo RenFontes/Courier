@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Threading;
-
+using CourierB;
 using Xunit;
 
-namespace Courier.Tests
+namespace CourierB.Tests
 {
 	public class MessengerTests : IDisposable
 	{

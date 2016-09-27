@@ -1,6 +1,7 @@
-﻿using Xunit;
+﻿using CourierB;
+using Xunit;
 
-namespace Courier.Tests
+namespace CourierB.Tests
 {
     public class MediatorFactoryTests
     {
@@ -8,10 +9,10 @@ namespace Courier.Tests
         [Fact]
         public void SingeltonMediator()
         {
-            var singelton = MediatorFactory.GetStaticMediator();
+            var singelton = MediatorFactory.GetMediator();
             int singletonHashCode = singelton.GetHashCode();
 
-            var secondTime = MediatorFactory.GetStaticMediator();
+            var secondTime = MediatorFactory.GetMediator();
             int secondTimehasCode = secondTime.GetHashCode();
 
             Assert.Equal(singletonHashCode,secondTimehasCode);
@@ -21,10 +22,10 @@ namespace Courier.Tests
         public void InstanceMediator()
         {
 
-            var singelton = MediatorFactory.GetNewMediatorInstance();
+            var singelton = MediatorFactory.GetMediator();
             int singletonHashCode = singelton.GetHashCode();
 
-            var secondTime = MediatorFactory.GetNewMediatorInstance();
+            var secondTime = MediatorFactory.GetMediator();
             int secondTimehasCode = secondTime.GetHashCode();
 
             Assert.NotEqual(singletonHashCode, secondTimehasCode);

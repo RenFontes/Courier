@@ -2,7 +2,7 @@ using System;
 using System.Diagnostics;
 using System.Reflection;
 
-namespace Courier
+namespace CourierB
 {
 	[DebuggerDisplay("MethodInfo.Name: {CallbackMethod.Name} WeakReference.Target: {_callbackWeakReference.Target}")]
 	internal class WeakSubscriber

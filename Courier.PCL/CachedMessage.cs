@@ -1,7 +1,7 @@
 using System;
 using System.Diagnostics;
 
-namespace Courier
+namespace CourierB
 {
 	[DebuggerDisplay("Message: {Message}, Parameter: {Parameter}")]
 	internal class CachedMessage : IDisposable

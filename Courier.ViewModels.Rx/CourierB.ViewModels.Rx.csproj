@@ -8,8 +8,8 @@
     <ProjectGuid>{6E7FBB8B-8F16-415B-9A04-026639861872}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Courier.ViewModels.Rx</RootNamespace>
-    <AssemblyName>Courier.ViewModels.Rx</AssemblyName>
+    <RootNamespace>CourierB.ViewModels.Rx</RootNamespace>
+    <AssemblyName>CourierB.ViewModels.Rx</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>
@@ -93,17 +93,17 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Courier.PCL\Courier.PCL.csproj">
+    <ProjectReference Include="..\Courier.PCL\CourierB.PCL.csproj">
       <Project>{ac00b9f9-8eef-4e6d-9515-df3edbc48634}</Project>
-      <Name>Courier.PCL</Name>
+      <Name>CourierB.PCL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Courier.Rx\Courier.Rx.csproj">
+    <ProjectReference Include="..\Courier.Rx\CourierB.Rx.csproj">
       <Project>{87654bdf-9893-4516-8a05-02e0c922c7ff}</Project>
-      <Name>Courier.Rx</Name>
+      <Name>CourierB.Rx</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Courier.ViewModels\Courier.ViewModels.csproj">
+    <ProjectReference Include="..\Courier.ViewModels\CourierB.ViewModels.csproj">
       <Project>{3EBBAE49-0F50-49C2-A8D9-4C350F432627}</Project>
-      <Name>Courier.ViewModels</Name>
+      <Name>CourierB.ViewModels</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

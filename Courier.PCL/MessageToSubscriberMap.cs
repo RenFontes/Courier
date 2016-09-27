@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
-using System.Reflection;
-using System.Linq;
 using System.Diagnostics;
+using System.Linq;
+using System.Reflection;
 
-namespace Courier
+namespace CourierB
 {
 	[DebuggerDisplay("Subscriber Count: {SubscriberCount}")]
 	internal class MessageToSubscriberMap : IDisposable

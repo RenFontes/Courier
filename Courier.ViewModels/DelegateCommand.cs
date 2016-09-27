@@ -2,7 +2,7 @@
 using System.Windows.Input;
 
 
-namespace Courier.ViewModels
+namespace CourierB.ViewModels
 {
     public class DelegateCommand<T> : ICommand
     {
